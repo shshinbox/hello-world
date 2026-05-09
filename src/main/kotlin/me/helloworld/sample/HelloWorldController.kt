@@ -1,4 +1,4 @@
-package me.helloworld.post
+package me.helloworld.sample
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

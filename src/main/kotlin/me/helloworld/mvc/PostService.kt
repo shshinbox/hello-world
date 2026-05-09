@@ -1,13 +1,16 @@
-package me.helloworld.post
+package me.helloworld.mvc
 
+import me.helloworld.common.PostCreateRequest
+import me.helloworld.common.PostResponse
+import me.helloworld.common.PostUpdateRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
-@Transactional(readOnly = true)
+@Transactional(transactionManager = "transactionManager", readOnly = true)
 class PostService(private val postRepository: PostRepository) {
 
-    @Transactional
+    @Transactional(transactionManager = "transactionManager")
     fun create(request: PostCreateRequest): Long {
         val post = postRepository.save(Post(title = request.title, content = request.content))
         return post.id!!
@@ -18,13 +21,13 @@ class PostService(private val postRepository: PostRepository) {
         return PostResponse(post.id!!, post.title, post.content)
     }
 
-    @Transactional
+    @Transactional(transactionManager = "transactionManager")
     fun update(id: Long, request: PostUpdateRequest) {
         val post = postRepository.findById(id).orElseThrow { RuntimeException("Post not found") }
         post.title = request.title
         post.content = request.content
     }
 
-    @Transactional
+    @Transactional(transactionManager = "transactionManager")
     fun delete(id: Long) = postRepository.deleteById(id)
 }

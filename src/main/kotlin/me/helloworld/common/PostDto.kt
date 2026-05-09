@@ -1,4 +1,4 @@
-package me.helloworld.post
+package me.helloworld.common
 
 data class PostCreateRequest(val title: String, val content: String)
 data class PostUpdateRequest(val title: String, val content: String)

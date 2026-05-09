@@ -1,5 +1,7 @@
-package me.helloworld.post
+package me.helloworld.mvc
 
+import me.helloworld.common.PostCreateRequest
+import me.helloworld.common.PostUpdateRequest
 import org.springframework.web.bind.annotation.*
 
 @RestController
